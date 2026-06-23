@@ -9,6 +9,37 @@
 	<a href="https://gitee.com/y_project/RuoYi-Vue/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
+## ⚠️ 安全提示
+
+> **本项目包含默认的数据库开发配置（`root/123456`、`ruoyi/123456`），仅用于本地开发环境。**
+>
+> 部署到服务器或生产环境前，请务必修改以下配置中的密码：
+> - `ruoyi-admin/src/main/resources/application-druid.yml` — MySQL 和 Druid 监控面板密码
+> - `ruoyi-admin/src/main/resources/application.yml` — Redis 密码
+>
+> 更多安全建议请参考 [若依官方文档](http://doc.ruoyi.vip)。
+
+## 快速开始
+
+```bash
+# 1. 创建数据库并导入SQL
+#    执行 sql/ 目录下的 ry_*.sql 脚本
+
+# 2. 修改数据库连接（根据本机环境）
+#    编辑 ruoyi-admin/src/main/resources/application-druid.yml
+
+# 3. 启动后端
+cd ruoyi-admin
+mvn spring-boot:run
+
+# 4. 启动前端
+cd ruoyi-ui
+npm install
+npm run dev
+```
+
+---
+
 ## 平台简介
 
 若依是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。
