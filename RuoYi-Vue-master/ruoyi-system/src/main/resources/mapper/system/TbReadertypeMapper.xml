@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbReadertypeMapper">
+    
+    <resultMap type="TbReadertype" id="TbReadertypeResult">
+        <result property="rdType"    column="rdType"    />
+        <result property="rdTypeName"    column="rdTypeName"    />
+        <result property="CanLendQty"    column="CanLendQty"    />
+        <result property="CanLendDay"    column="CanLendDay"    />
+        <result property="CanContinueTimes"    column="CanContinueTimes"    />
+        <result property="PunishRate"    column="PunishRate"    />
+        <result property="DateValid"    column="DateValid"    />
+    </resultMap>
+
+    <sql id="selectTbReadertypeVo">
+        select rdType, rdTypeName, CanLendQty, CanLendDay, CanContinueTimes, PunishRate, DateValid from tb_readertype
+    </sql>
+
+    <select id="selectTbReadertypeList" parameterType="TbReadertype" resultMap="TbReadertypeResult">
+        <include refid="selectTbReadertypeVo"/>
+        <where>  
+            <if test="rdTypeName != null  and rdTypeName != ''"> and rdTypeName like concat('%', #{rdTypeName}, '%')</if>
+            <if test="CanLendQty != null "> and CanLendQty = #{CanLendQty}</if>
+            <if test="CanLendDay != null "> and CanLendDay = #{CanLendDay}</if>
+            <if test="CanContinueTimes != null "> and CanContinueTimes = #{CanContinueTimes}</if>
+            <if test="PunishRate != null "> and PunishRate = #{PunishRate}</if>
+            <if test="DateValid != null "> and DateValid = #{DateValid}</if>
+        </where>
+    </select>
+    
+    <select id="selectTbReadertypeByRdType" parameterType="Long" resultMap="TbReadertypeResult">
+        <include refid="selectTbReadertypeVo"/>
+        where rdType = #{rdType}
+    </select>
+
+    <insert id="insertTbReadertype" parameterType="TbReadertype">
+        insert into tb_readertype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rdType != null">rdType,</if>
+            <if test="rdTypeName != null and rdTypeName != ''">rdTypeName,</if>
+            <if test="CanLendQty != null">CanLendQty,</if>
+            <if test="CanLendDay != null">CanLendDay,</if>
+            <if test="CanContinueTimes != null">CanContinueTimes,</if>
+            <if test="PunishRate != null">PunishRate,</if>
+            <if test="DateValid != null">DateValid,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rdType != null">#{rdType},</if>
+            <if test="rdTypeName != null and rdTypeName != ''">#{rdTypeName},</if>
+            <if test="CanLendQty != null">#{CanLendQty},</if>
+            <if test="CanLendDay != null">#{CanLendDay},</if>
+            <if test="CanContinueTimes != null">#{CanContinueTimes},</if>
+            <if test="PunishRate != null">#{PunishRate},</if>
+            <if test="DateValid != null">#{DateValid},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbReadertype" parameterType="TbReadertype">
+        update tb_readertype
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="rdTypeName != null and rdTypeName != ''">rdTypeName = #{rdTypeName},</if>
+            <if test="CanLendQty != null">CanLendQty = #{CanLendQty},</if>
+            <if test="CanLendDay != null">CanLendDay = #{CanLendDay},</if>
+            <if test="CanContinueTimes != null">CanContinueTimes = #{CanContinueTimes},</if>
+            <if test="PunishRate != null">PunishRate = #{PunishRate},</if>
+            <if test="DateValid != null">DateValid = #{DateValid},</if>
+        </trim>
+        where rdType = #{rdType}
+    </update>
+
+    <delete id="deleteTbReadertypeByRdType" parameterType="Long">
+        delete from tb_readertype where rdType = #{rdType}
+    </delete>
+
+    <delete id="deleteTbReadertypeByRdTypes" parameterType="String">
+        delete from tb_readertype where rdType in 
+        <foreach item="rdType" collection="array" open="(" separator="," close=")">
+            #{rdType}
+        </foreach>
+    </delete>
+
+</mapper>
