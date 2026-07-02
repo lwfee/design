@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 智能选课系统 — 设计模式课程作业</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ==================== 顶部导航栏 ==================== -->
+  <header class="app-header">
+    <div class="header-left">
+      <span class="logo">🎓</span>
+      <h1>智能选课系统</h1>
+      <span class="badge">AI助手</span>
+    </div>
+    <div class="header-right">
+      <span class="header-hint">💡 对AI助手说话即可完成选课操作</span>
+    </div>
+  </header>
+
+  <!-- ==================== 主体布局 ==================== -->
+  <main class="app-main">
+    <!-- ===== 左侧：课程区域 ===== -->
+    <section class="course-section">
+      <!-- 搜索和筛选栏 -->
+      <div class="course-toolbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="course-search" placeholder="搜索课程名称、教师、编号...">
+        </div>
+        <select id="type-filter" class="filter-select">
+          <option value="all">全部类型</option>
+          <option value="required">必修课</option>
+          <option value="elective">选修课</option>
+          <option value="public">公选课</option>
+        </select>
+        <button id="btn-reset" class="btn btn-reset" title="重置所有数据">🔄 重置</button>
+      </div>
+
+      <!-- 课程卡片列表 -->
+      <div class="course-list" id="course-list">
+        <!-- JS动态渲染 -->
+      </div>
+
+      <!-- 已选课程 -->
+      <div class="selected-section">
+        <h3 class="section-title">📋 已选课程</h3>
+        <div class="selected-list" id="selected-list">
+          <!-- JS动态渲染 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 右侧：AI助手聊天区域 ===== -->
+    <aside class="chat-section" id="chat-panel">
+      <div class="chat-header">
+        <span class="chat-header-icon">🤖</span>
+        <div>
+          <h3>选课助手 小智</h3>
+          <span class="chat-status">在线 · 随时为您服务</span>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- JS动态渲染消息 -->
+      </div>
+
+      <div class="chat-quick-actions">
+        <button class="quick-action" data-text="推荐课程">💡 推荐课程</button>
+        <button class="quick-action" data-text="我选了哪些课">📋 查看已选</button>
+        <button class="quick-action" data-text="我的课表">📅 我的课表</button>
+        <button class="quick-action" data-text="帮助">❓ 帮助</button>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" placeholder="输入消息，如"推荐课程"、"选课CS402"..." autofocus>
+        <button class="send-btn">📤</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ==================== 底部状态栏 ==================== -->
+  <footer class="app-footer">
+    <div class="footer-stats">
+      <span>已选 <strong id="stat-count">0</strong> 门课程</span>
+      <span class="footer-divider">|</span>
+      <span>学分 <strong id="stat-credits">0/25</strong></span>
+      <span class="footer-divider">|</span>
+      <span>毕业要求 25 学分</span>
+    </div>
+    <div class="footer-info">
+      《设计模式》课程期末作业 — 智能选课系统
+    </div>
+  </footer>
+
+  <!-- Toast容器 -->
+  <div id="toast-container"></div>
+
+  <!-- ==================== JS入口 ==================== -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
